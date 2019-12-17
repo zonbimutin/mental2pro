@@ -1,0 +1,44 @@
+{% extends "dashboard.html" %}
+
+{% block wrapper-container %}
+
+    <!-- Content Wrapper -->
+    
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        {% block topbar %}
+            {% include 'components/topbar.html' %}
+        {% endblock topbar %}
+      
+        <!-- Begin Page Content -->
+        {% block wrapper-content %}
+        <div class="container-fluid">
+          <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+        </div>
+
+
+        {% endblock wrapper-content %}
+
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      {% block footer %}
+        {% include 'components/footer.html' %}
+      {% endblock footer %}
+
+      <!-- Footer -->
+
+
+    </div>
+
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+{% endblock wrapper-container %}
