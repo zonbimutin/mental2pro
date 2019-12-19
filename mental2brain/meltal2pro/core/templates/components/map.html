@@ -1,0 +1,164 @@
+ {% block links %}
+
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <style type="text/css">
+      .map {
+        height: 100%;
+        width: 100%;
+      }
+  
+    </style>
+     
+{% endblock links %}
+ 
+  <div class="row ">
+
+    <!-- Area Chart -->
+    <div class="col-xl-6 col-lg-6">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+          <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+              <div class="dropdown-header">Dropdown Header:</div>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div id="map"><div id="popup-map"></div></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card col-6">
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Range input </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			  <label>Min</label>
+			  <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+			</div>
+			<div class="form-group col-md-6 text-right">
+			  <label>Max</label>
+			  <input type="number" class="form-control" placeholder="$1,0000">
+			</div>
+			</div>
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Selection </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">52</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check1">
+				  	<label class="custom-control-label" for="Check1">Samsung</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">132</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check2">
+				 	<label class="custom-control-label" for="Check2">Black berry</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">17</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check3">
+				  	<label class="custom-control-label" for="Check3">Samsung</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">7</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check4">
+				  	<label class="custom-control-label" for="Check4">Other Brand</label>
+				</div> <!-- form-check.// -->
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+
+  </div>
+  
+  
+
+  <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+
+  <script>
+
+    var data = {{ data | safe }};
+
+    console.log(data.length);
+
+    var markers = [];
+    var i;
+    for (i = 0; i < data.length; i++) { 
+        
+        var marker = new ol.Feature({
+            geometry: new ol.geom.Point(
+            ol.proj.fromLonLat([data[i].fields.longitud,data[i].fields.latitud])
+        ),  // Cordinates of New York's Town Hall
+        }); 
+
+        {% load static %}
+
+        marker.setStyle(new ol.style.Style({
+            image: new ol.style.Icon(({
+                anchor: [0.5, 46],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                src: '{% static 'client/img/Layer 1@0.25x.png' %}',
+             
+            }))
+        }));
+
+        markers.push(marker);
+
+        }
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([6.129384,45.899247]), // Coordinates of New York
+          zoom: 12 //Initial Zoom Level
+        })
+      });
+
+  
+
+
+    var vectorSource = new ol.source.Vector({
+        features: markers
+        });
+    var markerVectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+        });
+        map.addLayer(markerVectorLayer);
+
+ 
+  </script>
+

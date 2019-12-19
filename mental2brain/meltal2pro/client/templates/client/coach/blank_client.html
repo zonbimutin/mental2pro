@@ -1,0 +1,38 @@
+{% extends "components/wrapper-cotainer.html" %}
+
+{% block wrapper-content %}
+
+<style>
+@media screen and (max-width: 780px)
+{
+    #habitue, #confirme, #expert, #ambassadeur
+    {
+        display: none;
+    }
+
+    #lvl-experience
+    {
+        margin-top: 1.5rem !important;
+    }
+}
+</style>
+
+<div class="container-fluid">
+    <div class="text-center">
+        {% include './head.html' %}
+
+        <!-- Experiences -->
+        {% include './experiences_client.html' %}
+
+        <!-- Section À Propos -->
+        {% include './about_client.html' %}
+
+        <!-- Expériences -->
+        {% include './skills_client.html' %}
+
+        <!-- Social network -->
+        {% include './social_networks.html' %}
+    </div>
+</div>
+
+{% endblock wrapper-content %}

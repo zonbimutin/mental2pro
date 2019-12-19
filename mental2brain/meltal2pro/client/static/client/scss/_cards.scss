@@ -9,6 +9,14 @@
         line-height: 1.5;
       }
     }
+    .card-body{
+      .card-text{
+        font-size: 0.75rem;
+      }
+      .card-title{
+        font-size: 1rem;
+      }
+    }
   }
   // Collapsable Card Styling
   .card-header[data-toggle="collapse"] {
@@ -33,4 +41,11 @@
       }
     }
   }
+}
+
+.card-text{
+  font-size: 0.75rem;
+}
+.card-title{
+  font-size: 1rem;
 }

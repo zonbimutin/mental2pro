@@ -1,7 +1,6 @@
 // Sidebar
 .sidebar {
   width: $sidebar-collapsed-width;
-  min-height: 100vh;
   .nav-item {
     position: relative;
     &:last-child {
@@ -137,6 +136,7 @@
 @include media-breakpoint-up(md) {
   .sidebar {
     width: $sidebar-base-width !important;
+    
     .nav-item {
       // Accordion
       .collapse {

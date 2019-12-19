@@ -20,11 +20,21 @@
   
   <!-- Custom styles for this template-->
 
-  <link href="{% static 'client/css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'client/css/sb-admin-2.css' %}" rel="stylesheet">
+
+  {% block links %}
+  {% endblock links %}
 
 </head>
 
 <body id="page-top">
+
+    {% block nav-bar %}
+      {% include 'components/topbar.html' %}
+    {% endblock nav-bar %}
+
+    
+  
 
     {% block content %}
 
@@ -49,6 +59,9 @@
   <!-- Page level custom scripts -->
   <script src="{% static 'client/js/demo/chart-area-demo.js' %}"></script>
   <script src="{% static 'client/js/demo/chart-pie-demo.js' %}"></script>
+
+  {% block script %}
+  {% endblock script %}
 
 </body>
 

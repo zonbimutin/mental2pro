@@ -18,7 +18,12 @@ from django.urls import path
 from client import views
 
 urlpatterns = [
-	path('', views.index),
-    path('home/', views.home),
+	path('', views.login, name='login'),
+    path('index/', views.index, name='index'),
+    path('home/', views.home, name='home'),
+    path('searh-coach/', views.coachSearch, name='coach'),
+    path('chat/', views.chat, name='chat'),
+    path('test/', views.test, name='test'),
+    path('profile/', views.profile, name='profile'),
     path('admin/', admin.site.urls),
 ]

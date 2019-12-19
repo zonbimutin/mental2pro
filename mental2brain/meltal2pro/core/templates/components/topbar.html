@@ -1,46 +1,37 @@
 {% block topbar %}
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-0 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
+          <a class="sidebar-brand d-none d-sm-block align-items-center justify-content-center hidden-sm" href="{% url 'index' %}">
+            <div class="sidebar-brand-icon rotate-n-15">
+              <i class="fas fa-laugh-wink"></i>
             </div>
-          </form>
+          </a>
+
+        <!-- Sidebar Toggle (Topbar) -->
+              <!-- Nav Item - Menu -->
+            <a class="nav-link dropdown-toggle d-sm-none" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bars"></i>
+            </a>
+            <!-- Dropdown - Menu -->
+
+              <div class="nav-item dropdown no-arrow mx-1 d-sm-none">
+                {% include 'components/drop-menu.html' %}
+              </div>
+             
+
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+          <ul class="navbar-nav ml-auto align-middle">
+            <!-- Nav Item - NewCoach -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <div class="nav-link">
+                <a href="{% url 'coach' %}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                  <i class="fas fa-download fa-sm text-white-50"></i> New Cours
+                </a>
               </div>
+
             </li>
 
             <!-- Nav Item - Alerts -->
@@ -144,7 +135,7 @@
                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                   </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                <a class="dropdown-item text-center small text-gray-500" href="{% url 'chat' %}">Read More Messages</a>
               </div>
             </li>
 
